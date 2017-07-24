@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanqing.dao.SmsMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.sanqing.entity.SmsMessage" >
+    <id column="message_id" property="messageId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="cause" property="cause" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="dateline" property="dateline" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    message_id, user_name, mobile, cause, content, status, dateline 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sms_message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectAllMessageByMobile" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sms_message
+    where mobile = #{mobile,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sms_message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.sanqing.entity.SmsMessage" >
+    insert into sms_message (message_id,user_name,mobile,cause,content,status,dateline )
+    values (#{messageId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{cause,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{status,jdbcType=TIMESTAMP},
+      #{dateline,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.sanqing.entity.SmsMessage" >
+    insert into sms_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        message_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="cause != null" >
+        cause,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="dateline  != null" >
+        dateline ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline  != null" >
+        #{dateline ,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.SmsMessage" >
+    update sms_message
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dateline  != null" >
+        dateline  = #{dateline ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.SmsMessage" >
+    update sms_message
+    set user_name = #{userName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      cause = #{cause,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      dateline  = #{dateline ,jdbcType=VARCHAR}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+</mapper>

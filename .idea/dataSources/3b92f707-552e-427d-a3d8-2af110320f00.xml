@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="credit_travel@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="credit_travel">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="db_blog"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="mybatis"/>
+    <schema id="6" parent="1" name="mydatabase"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="sys"/>
+    <table id="10" parent="2" name="comment">
+      <Comment>评价表</Comment>
+    </table>
+    <table id="11" parent="2" name="credit2">
+      <Comment>信用表2</Comment>
+    </table>
+    <table id="12" parent="2" name="credit_1">
+      <Comment>信用表1</Comment>
+    </table>
+    <table id="13" parent="2" name="identity_card">
+      <Comment>身份证表</Comment>
+    </table>
+    <table id="14" parent="2" name="merchant">
+      <Comment>商家表</Comment>
+    </table>
+    <table id="15" parent="2" name="order">
+      <Comment>订单表</Comment>
+    </table>
+    <table id="16" parent="2" name="user">
+      <Comment>用户表</Comment>
+    </table>
+    <column id="17" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="10" name="aid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="19" parent="10" name="message">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="20" parent="10" name="time">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="21" parent="10" name="content">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="22" parent="10" name="appraiser">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="23" parent="10" name="aid">
+      <ColNames>aid</ColNames>
+    </index>
+    <key id="24" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="10" name="comment_aibfk_1">
+      <ColNames>aid</ColNames>
+      <RefSchemaName>credit_travel</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="26" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="11" name="aid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="28" parent="11" name="extend_1">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="29" parent="11" name="extend_2">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="30" parent="11" name="extend_3">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="31" parent="11" name="extend_4">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="32" parent="11" name="extend_5">
+      <Position>7</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="33" parent="11" name="extend_6">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="34" parent="11" name="aid">
+      <ColNames>aid</ColNames>
+    </index>
+    <key id="35" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="37" parent="12" name="aid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="38" parent="12" name="certificate">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="39" parent="12" name="condition">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="40" parent="12" name="service">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="41" parent="12" name="price">
+      <Position>6</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="42" parent="12" name="extend_1">
+      <Position>7</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="43" parent="12" name="extend_2">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <index id="44" parent="12" name="aid">
+      <ColNames>aid</ColNames>
+    </index>
+    <key id="45" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="12" name="credit_1_aidfk_1">
+      <ColNames>aid</ColNames>
+      <RefSchemaName>credit_travel</RefSchemaName>
+      <RefTableName>merchant</RefTableName>
+      <RefColNames>mer_id</RefColNames>
+    </foreign-key>
+    <column id="47" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="48" parent="13" name="aid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="49" parent="13" name="name">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="50" parent="13" name="id_number">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="51" parent="13" name="aid">
+      <ColNames>aid</ColNames>
+    </index>
+    <key id="52" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="53" parent="13" name="dianjiliang_ibfk_1">
+      <ColNames>aid</ColNames>
+      <RefSchemaName>credit_travel</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="54" parent="14" name="mer_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="55" parent="14" name="mer_name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="56" parent="14" name="mobile">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="57" parent="14" name="scenic_name">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="58" parent="14" name="tag">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="59" parent="14" name="scenic_class">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="60" parent="14" name="logo">
+      <Position>7</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <key id="61" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mer_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="62" parent="15" name="order_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="63" parent="15" name="aid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="64" parent="15" name="status">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="65" parent="15" name="subscribe_time">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="66" parent="15" name="reside_time">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="67" parent="15" name="departure_time">
+      <Position>6</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="68" parent="15" name="diners_num">
+      <Position>7</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="69" parent="15" name="stay_num">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="70" parent="15" name="services">
+      <Position>9</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <index id="71" parent="15" name="aid">
+      <ColNames>aid</ColNames>
+    </index>
+    <key id="72" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>order_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="73" parent="15" name="order_aibfk_1">
+      <ColNames>aid</ColNames>
+      <RefSchemaName>credit_travel</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="74" parent="16" name="user_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="16" name="username">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="76" parent="16" name="nickname">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="77" parent="16" name="password">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="78" parent="16" name="sex">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="79" parent="16" name="birthday">
+      <Position>6</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="80" parent="16" name="city">
+      <Position>7</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="81" parent="16" name="mobile">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="82" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

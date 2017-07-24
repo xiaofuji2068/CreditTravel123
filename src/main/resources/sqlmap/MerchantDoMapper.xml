@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanqing.dao.MerchantDoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanqing.entity.MerchantDo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="do_name" property="doName" jdbcType="VARCHAR" />
+    <result column="do_point" property="doPoint" jdbcType="VARCHAR" />
+    <result column="do_class" property="doClass" jdbcType="VARCHAR" />
+    <result column="do_status" property="doStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, do_name, do_point, do_class, do_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_do
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from merchant_do
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanqing.entity.MerchantDo" >
+    insert into merchant_do (id, do_name, do_point, 
+      do_class, do_status)
+    values (#{id,jdbcType=INTEGER}, #{doName,jdbcType=VARCHAR}, #{doPoint,jdbcType=VARCHAR}, 
+      #{doClass,jdbcType=VARCHAR}, #{doStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanqing.entity.MerchantDo" >
+    insert into merchant_do
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="doName != null" >
+        do_name,
+      </if>
+      <if test="doPoint != null" >
+        do_point,
+      </if>
+      <if test="doClass != null" >
+        do_class,
+      </if>
+      <if test="doStatus != null" >
+        do_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="doName != null" >
+        #{doName,jdbcType=VARCHAR},
+      </if>
+      <if test="doPoint != null" >
+        #{doPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="doClass != null" >
+        #{doClass,jdbcType=VARCHAR},
+      </if>
+      <if test="doStatus != null" >
+        #{doStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.MerchantDo" >
+    update merchant_do
+    <set >
+      <if test="doName != null" >
+        do_name = #{doName,jdbcType=VARCHAR},
+      </if>
+      <if test="doPoint != null" >
+        do_point = #{doPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="doClass != null" >
+        do_class = #{doClass,jdbcType=VARCHAR},
+      </if>
+      <if test="doStatus != null" >
+        do_status = #{doStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.MerchantDo" >
+    update merchant_do
+    set do_name = #{doName,jdbcType=VARCHAR},
+      do_point = #{doPoint,jdbcType=VARCHAR},
+      do_class = #{doClass,jdbcType=VARCHAR},
+      do_status = #{doStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

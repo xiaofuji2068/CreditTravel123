@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanqing.dao.MerchantMapper">
+  <resultMap id="BaseResultMap" type="com.sanqing.entity.Merchant">
+    <id column="mer_id" jdbcType="INTEGER" property="merId" />
+    <result column="mer_name" jdbcType="VARCHAR" property="merName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="scenic_name" jdbcType="VARCHAR" property="scenicName" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="scenic_class" jdbcType="VARCHAR" property="scenicClass" />
+    <result column="service_item" jdbcType="VARCHAR" property="serviceItem" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mer_id, mer_name, mobile, scenic_name, tag, scenic_class, service_item, logo, description, 
+    address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where mer_id = #{merId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    where mer_name = #{merName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant
+    where mer_id = #{merId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanqing.entity.Merchant">
+    insert into merchant (mer_id, mer_name, mobile, 
+      scenic_name, tag, scenic_class, 
+      service_item, logo, description, 
+      address)
+    values (#{merId,jdbcType=INTEGER}, #{merName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{scenicName,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{scenicClass,jdbcType=VARCHAR}, 
+      #{serviceItem,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanqing.entity.Merchant">
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merId != null">
+        mer_id,
+      </if>
+      <if test="merName != null">
+        mer_name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="scenicName != null">
+        scenic_name,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="scenicClass != null">
+        scenic_class,
+      </if>
+      <if test="serviceItem != null">
+        service_item,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merId != null">
+        #{merId,jdbcType=INTEGER},
+      </if>
+      <if test="merName != null">
+        #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicName != null">
+        #{scenicName,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicClass != null">
+        #{scenicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceItem != null">
+        #{serviceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.Merchant">
+    update merchant
+    <set>
+      <if test="merName != null">
+        mer_name = #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicName != null">
+        scenic_name = #{scenicName,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicClass != null">
+        scenic_class = #{scenicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceItem != null">
+        service_item = #{serviceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mer_id = #{merId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.Merchant">
+    update merchant
+    set mer_name = #{merName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      scenic_name = #{scenicName,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      scenic_class = #{scenicClass,jdbcType=VARCHAR},
+      service_item = #{serviceItem,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where mer_id = #{merId,jdbcType=INTEGER}
+  </update>
+</mapper>

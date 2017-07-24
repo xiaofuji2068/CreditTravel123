@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanqing.dao.SubscribeMapper" >
+  <resultMap id="BaseResultMap" type="com.sanqing.entity.Subscribe" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="subscribe_time" property="subscribeTime" jdbcType="TIMESTAMP" />
+    <result column="reside_time" property="resideTime" jdbcType="TIMESTAMP" />
+    <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP" />
+    <result column="diners_num" property="dinersNum" jdbcType="VARCHAR" />
+    <result column="stay_num" property="stayNum" jdbcType="VARCHAR" />
+    <result column="services" property="services" jdbcType="VARCHAR" />
+    <result column="sign_in" property="signIn" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, aid, status, linkman, phone, subscribe_time, reside_time, departure_time, 
+    diners_num, stay_num, services, sign_in, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from subscribe
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from subscribe
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanqing.entity.Subscribe" >
+    insert into subscribe (order_id, aid, status, 
+      linkman, phone, subscribe_time, 
+      reside_time, departure_time, diners_num, 
+      stay_num, services, sign_in, 
+      remarks)
+    values (#{orderId,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{linkman,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{subscribeTime,jdbcType=TIMESTAMP}, 
+      #{resideTime,jdbcType=TIMESTAMP}, #{departureTime,jdbcType=TIMESTAMP}, #{dinersNum,jdbcType=VARCHAR}, 
+      #{stayNum,jdbcType=VARCHAR}, #{services,jdbcType=VARCHAR}, #{signIn,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanqing.entity.Subscribe" >
+    insert into subscribe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="subscribeTime != null" >
+        subscribe_time,
+      </if>
+      <if test="resideTime != null" >
+        reside_time,
+      </if>
+      <if test="departureTime != null" >
+        departure_time,
+      </if>
+      <if test="dinersNum != null" >
+        diners_num,
+      </if>
+      <if test="stayNum != null" >
+        stay_num,
+      </if>
+      <if test="services != null" >
+        services,
+      </if>
+      <if test="signIn != null" >
+        sign_in,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null" >
+        #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resideTime != null" >
+        #{resideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureTime != null" >
+        #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dinersNum != null" >
+        #{dinersNum,jdbcType=VARCHAR},
+      </if>
+      <if test="stayNum != null" >
+        #{stayNum,jdbcType=VARCHAR},
+      </if>
+      <if test="services != null" >
+        #{services,jdbcType=VARCHAR},
+      </if>
+      <if test="signIn != null" >
+        #{signIn,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.Subscribe" >
+    update subscribe
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null" >
+        subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resideTime != null" >
+        reside_time = #{resideTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureTime != null" >
+        departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dinersNum != null" >
+        diners_num = #{dinersNum,jdbcType=VARCHAR},
+      </if>
+      <if test="stayNum != null" >
+        stay_num = #{stayNum,jdbcType=VARCHAR},
+      </if>
+      <if test="services != null" >
+        services = #{services,jdbcType=VARCHAR},
+      </if>
+      <if test="signIn != null" >
+        sign_in = #{signIn,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.Subscribe" >
+    update subscribe
+    set aid = #{aid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      reside_time = #{resideTime,jdbcType=TIMESTAMP},
+      departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      diners_num = #{dinersNum,jdbcType=VARCHAR},
+      stay_num = #{stayNum,jdbcType=VARCHAR},
+      services = #{services,jdbcType=VARCHAR},
+      sign_in = #{signIn,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

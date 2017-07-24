@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanqing.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.sanqing.entity.Comment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="appraiser" property="appraiser" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, aid, message, time, content, appraiser, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!--select * from comment c LEFT JOIN user u on c.aid = u.user_id and u.user_id = 1 where 1=1-->
+  <select id="selectCommentByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    c.*
+    from comment c INNER JOIN user u
+    on c.aid = u.user_id
+    AND u.user_id = #{id,jdbcType=INTEGER}
+    where 1=1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanqing.entity.Comment" >
+    insert into comment (id, aid, message, 
+      time, content, appraiser, 
+      grade)
+    values (#{id,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{appraiser,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanqing.entity.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="appraiser != null" >
+        appraiser,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiser != null" >
+        #{appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.Comment" >
+    update comment
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="appraiser != null" >
+        appraiser = #{appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.Comment" >
+    update comment
+    set aid = #{aid,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
+      appraiser = #{appraiser,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
