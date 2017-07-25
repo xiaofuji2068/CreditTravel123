@@ -45,7 +45,7 @@ public class CommentController {
     @RequestMapping(value = "comment/queryComment",method = RequestMethod.POST)
     public @ResponseBody JsonResult queryComment(@RequestParam ("id") int id){
         JsonResult jsonResult;
-        Object comment;
+        Object comment = null;
         try {
             comment = CommentService.service.queryComment(id);
         }catch (DataAccessException e) {
@@ -63,7 +63,7 @@ public class CommentController {
     @RequestMapping(value = "comment/queryCommentByUserId",method = RequestMethod.POST)
     public @ResponseBody JsonResult queryCommentByUserId(@RequestParam ("id") int id){
         JsonResult jsonResult;
-        Object comment;
+        Object comment = null;
         try {
             comment = CommentService.service.queryCommentByUserId(id);
         }catch (DataAccessException e) {

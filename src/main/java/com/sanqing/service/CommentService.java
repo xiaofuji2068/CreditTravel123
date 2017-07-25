@@ -20,7 +20,7 @@ public class CommentService {
         return commentMapper.selectByPrimaryKey(id);
     }
 
-    public Comment queryCommentByUserId(String id) throws DataAccessException {
+    public Comment queryCommentByUserId(int id) throws DataAccessException {
         return commentMapper.selectCommentByUserId(id);
     }
 }
