@@ -36,13 +36,15 @@ public class UserController {
 
     @RequestMapping(value = "user/login", method = POST)
     public @ResponseBody
-    JsonResult login(@RequestParam("mobile") String mobile, @RequestParam("password") String password, Model model, HttpSession session) {
+    Map login(@RequestParam("mobile") String mobile, @RequestParam("password") String password, Model model, HttpSession session) {
+        Map map = new HashMap();
         JsonResult jsonResult = new JsonResult();
         List<User> list = UserService.service.selectUserByMobile(mobile);
         if (null == list || list.isEmpty()) {
             jsonResult.setData("");
             jsonResult.setResultCode("1");
             jsonResult.setResultMessage("用户名不存在");
+            map.put("user", jsonResult);
 
         } else {
             if (list.get(0).getPassword().equals(password)) {
@@ -51,13 +53,19 @@ public class UserController {
                 jsonResult.setResultMessage("登录成功");
 //                model.addAttribute("User", list.get(0));
                 session.setAttribute("User", list.get(0));
+                String accessToken = UUID.randomUUID().toString();
+                session.setAttribute("accessToken", accessToken);
+
+                map.put("user", jsonResult);
+                map.put("accessToken", accessToken);
             } else {
                 jsonResult.setData("");
                 jsonResult.setResultCode("2");
                 jsonResult.setResultMessage("密码错误");
+                map.put("user", jsonResult);
             }
         }
-        return jsonResult;
+        return map;
     }
 
     @RequestMapping(value = "user/register", method = RequestMethod.POST)
@@ -296,16 +304,16 @@ public class UserController {
     //新增昵称
     @RequestMapping(value = "user/newNickName", method = POST)
     public @ResponseBody
-    JsonResult newNickName(@RequestParam("nickName") String nickName, Model model, HttpServletRequest request) {
+    JsonResult newNickName(@RequestParam("nickName") String nickName, @RequestParam("accessToken") String accessToken,HttpSession session) {
 
         JsonResult jsonResult;
-        User user1 = (User) request.getSession().getAttribute("User");
-
-
-        if (null == user1) {
+        String accessTokenSes = (String)session.getAttribute("accessToken");
+        if (accessTokenSes != null && !accessTokenSes.equals(accessToken)) {
             jsonResult = new JsonResult("", "请登录", "2");
             return jsonResult;
         }
+        User user1 = (User) session.getAttribute("User");
+
         User user = new User();
         user.setUserId(user1.getUserId());
         user.setNickname(nickName);
