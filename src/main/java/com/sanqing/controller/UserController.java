@@ -326,7 +326,7 @@ public class UserController {
     }
 
     //更新用户
-    @RequestMapping(value = "user/updateUser", method = POST)
+    @RequestMapping(value = "user/updateUser", method = RequestMethod.POST)
     public @ResponseBody
     JsonResult updateUser(@RequestBody User user, HttpServletRequest request) {
         JsonResult jsonResult;
