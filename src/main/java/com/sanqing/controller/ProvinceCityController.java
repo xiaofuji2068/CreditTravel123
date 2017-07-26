@@ -20,38 +20,41 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class ProvinceCityController {
     @RequestMapping(value = "proAndCity/selectAllProvince", method = POST)
-    public @ResponseBody JsonResult selectProvinceName(){
-        JsonResult jsonResult = null;
+    public @ResponseBody
+    JsonResult selectProvinceName() {
+        JsonResult jsonResult;
         List<Provinces> list = ProCityService.service.selectAllProvince();
         if (null != list && list.size() > 0) {
             jsonResult = new JsonResult(list, "查询成功", "0");
             return jsonResult;
         }
-        jsonResult = new JsonResult("", "查询失败","1");
+        jsonResult = new JsonResult("", "查询失败", "1");
         return jsonResult;
     }
 
     @RequestMapping(value = "proAndCity/selectCityByProid", method = POST)
-    public @ResponseBody JsonResult selectCityByProid(@RequestParam("porvinceId") String porvinceId ){
+    public @ResponseBody
+    JsonResult selectCityByProid(@RequestParam("porvinceId") String porvinceId) {
         JsonResult jsonResult = null;
         List<Cities> list = ProCityService.service.selectCityByProvince(porvinceId);
         if (null != list && list.size() > 0) {
             jsonResult = new JsonResult(list, "查询成功", "0");
             return jsonResult;
         }
-        jsonResult = new JsonResult("", "查询失败","1");
+        jsonResult = new JsonResult("", "查询失败", "1");
         return jsonResult;
     }
 
     @RequestMapping(value = "proAndCity/selectAreaByCityid", method = POST)
-    public @ResponseBody JsonResult selectAreaByCityid(@RequestParam("cityId") String cityId ){
+    public @ResponseBody
+    JsonResult selectAreaByCityid(@RequestParam("cityId") String cityId) {
         JsonResult jsonResult = null;
         List<Areas> list = ProCityService.service.selectAreasByCity(cityId);
         if (null != list && list.size() > 0) {
             jsonResult = new JsonResult(list, "查询成功", "0");
             return jsonResult;
         }
-        jsonResult = new JsonResult("", "查询失败","1");
+        jsonResult = new JsonResult("", "查询失败", "1");
         return jsonResult;
     }
 

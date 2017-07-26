@@ -26,7 +26,7 @@ public class UserService {
         return false;
     }
 
-    //查询用户登
+    //查询用户登陆
     public List<User> selectUserByMobile(String  mobile) {
        List<User> user = userMapper.selectByMobile(mobile);
         return user;

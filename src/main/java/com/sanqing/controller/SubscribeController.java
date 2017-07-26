@@ -66,6 +66,7 @@ public class SubscribeController {
 
     /**
      * 签到
+     *
      * @param orderId
      * @return
      */
@@ -98,7 +99,7 @@ public class SubscribeController {
                 }
             }
 
-        }else{
+        } else {
             jsonResult = new JsonResult("", "数据库异常", "2");
         }
         return jsonResult;
@@ -107,12 +108,13 @@ public class SubscribeController {
 
     /**
      * 修改订单状态：预约、取消、完成
+     *
      * @param orderId
      * @return
      */
     @RequestMapping(value = "subscribe/updateSubscribe", method = RequestMethod.POST)
     public @ResponseBody
-    JsonResult cancelSubscribe(@RequestParam("orderId") int orderId,@RequestParam("status") String status) {
+    JsonResult cancelSubscribe(@RequestParam("orderId") int orderId, @RequestParam("status") String status) {
         JsonResult jsonResult = null;
 
         //查询出选择订单
@@ -141,7 +143,7 @@ public class SubscribeController {
                 }
             }
 
-        }else{
+        } else {
             jsonResult = new JsonResult("", "该订单不存在", "2");
         }
         return jsonResult;

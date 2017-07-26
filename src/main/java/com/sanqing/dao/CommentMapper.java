@@ -15,6 +15,7 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
 
-
     Comment selectCommentByUserId(Integer userId);
+
+    Comment selectCommentByMerchantId(Integer merchantID);
 }

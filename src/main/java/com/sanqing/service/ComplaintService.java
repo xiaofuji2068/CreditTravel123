@@ -1,9 +1,7 @@
 package com.sanqing.service;
 
 import com.sanqing.dao.ComplaintMapper;
-import com.sanqing.dao.SubscribeMapper;
 import com.sanqing.entity.Complaint;
-import com.sanqing.entity.Subscribe;
 import com.sanqing.kit.SpringContextUtil;
 import org.springframework.dao.DataAccessException;
 
@@ -19,4 +17,7 @@ public class ComplaintService {
         return complaintMapper.insertSelective(complaint);
     }
 
+    public Complaint queryComplaint(int id) throws DataAccessException {
+        return complaintMapper.selectByPrimaryKey(id);
+    }
 }
