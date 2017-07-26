@@ -17,5 +17,9 @@ Hello,Maven,Spring<br/>
 <a href="login">login</a><br>
 <a href="testSaveEntity">TestSaveEntity</a><br>
 <a href="testSession">TestSession</a>
+<form id="login" action="testSession" method="post">
+
+    <input type="submit" value="TestSession"/>
+</form>
 </body>
 </html>

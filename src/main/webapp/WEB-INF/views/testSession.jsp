@@ -11,6 +11,21 @@
     <title>test return parameter</title>
 </head>
 <body>
-        session:${data};
+        session:${session};<br>
+        session:${session.attributeNames};
+
+        <%
+            session.getAttributeNames();
+            out.print("测试session\r\n");
+            out.write("测试session");
+            while (session.getAttributeNames().hasMoreElements()){
+                String name = session.getAttributeNames().nextElement();
+                out.write("\r\n");
+                out.write("write:" + session.getAttribute(name).toString());
+                out.print("print:" + session.getAttribute(name));
+                out.println("println:" + session.getAttribute(name));
+            }
+        %>
+
 </body>
 </html>
