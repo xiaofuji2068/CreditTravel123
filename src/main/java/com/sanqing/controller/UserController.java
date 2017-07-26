@@ -11,10 +11,7 @@ import com.sms.webservice.client.SmsWebClient;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -304,10 +301,10 @@ public class UserController {
     //新增昵称
     @RequestMapping(value = "user/newNickName", method = POST)
     public @ResponseBody
-    JsonResult newNickName(@RequestParam("nickName") String nickName, @RequestParam("accessToken") String accessToken,HttpSession session) {
+    JsonResult newNickName(@RequestParam("nickName") String nickName, @RequestParam("accessToken") String accessToken, HttpSession session) {
 
         JsonResult jsonResult;
-        String accessTokenSes = (String)session.getAttribute("accessToken");
+        String accessTokenSes = (String) session.getAttribute("accessToken");
         if (accessTokenSes != null && !accessTokenSes.equals(accessToken)) {
             jsonResult = new JsonResult("", "请登录", "2");
             return jsonResult;
@@ -324,6 +321,33 @@ public class UserController {
             jsonResult = new JsonResult(user, "修改昵称成功", "0");
         } else {
             jsonResult = new JsonResult("", "修改昵称失败", "1");
+        }
+        return jsonResult;
+    }
+
+    //更新用户
+    @RequestMapping(value = "user/updateUser", method = POST)
+    public @ResponseBody
+    JsonResult updateUser(@RequestBody User user, HttpServletRequest request) {
+        JsonResult jsonResult;
+        User user1 = (User) request.getSession().getAttribute("User");
+        if (null == user1) {
+            jsonResult = new JsonResult("", "请登录", "2");
+            return jsonResult;
+        }
+        user.setUserId(user1.getUserId());
+        user.setBirthday(user.getBirthday());
+        user.setCity(user.getCity());
+        user.setMobile(user.getMobile());
+        user.setNickname(user.getNickname());
+        user.setPassword(user.getPassword());
+        user.setSex(user.getSex());
+        user.setPhoto(user.getPhoto());
+        int flag = UserService.service.updateByPrimaryKeySelective(user);
+        if (1 == flag) {
+            jsonResult = new JsonResult(user, "更新用户成功", "0");
+        } else {
+            jsonResult = new JsonResult("", "更新用户失败", "1");
         }
         return jsonResult;
     }
@@ -513,7 +537,7 @@ public class UserController {
                     if (1 == flag) {
                         System.out.println("文件成功上传到指定目录下");
                         jsonResult = new JsonResult("", "文件成功上传到指定目录下", "0");
-                    }else {
+                    } else {
                         jsonResult = new JsonResult("", "上传文件失败", "0");
                     }
                 } else {

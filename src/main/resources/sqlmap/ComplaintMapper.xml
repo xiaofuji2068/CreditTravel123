@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sanqing.dao.ComplaintMapper" >
-  <resultMap id="BaseResultMap" type="com.sanqing.entity.Complaint" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="aid" property="aid" jdbcType="INTEGER" />
-    <result column="complaint_merchant" property="complaintMerchant" jdbcType="VARCHAR" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="complaint_classes" property="complaintClasses" jdbcType="VARCHAR" />
-    <result column="photo" property="photo" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
-    <result column="Contact" property="contact" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.sanqing.dao.ComplaintMapper">
+    <resultMap id="BaseResultMap" type="com.sanqing.entity.Complaint">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="aid" property="aid" jdbcType="INTEGER"/>
+        <result column="complaint_merchant" property="complaintMerchant" jdbcType="VARCHAR"/>
+        <result column="time" property="time" jdbcType="TIMESTAMP"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="complaint_classes" property="complaintClasses" jdbcType="VARCHAR"/>
+        <result column="photo" property="photo" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="linkman" property="linkman" jdbcType="VARCHAR"/>
+        <result column="Contact" property="contact" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, aid, complaint_merchant, time, title, complaint_classes, photo, description, 
     linkman, Contact, remark
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from complaint
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from complaint
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from complaint
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.sanqing.entity.Complaint" >
+    <insert id="insert" parameterType="com.sanqing.entity.Complaint">
     insert into complaint (id, aid, complaint_merchant, 
       time, title, complaint_classes, 
       photo, description, linkman, 
@@ -38,116 +38,116 @@
       #{photo,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{contact,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sanqing.entity.Complaint" >
-    insert into complaint
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="aid != null" >
-        aid,
-      </if>
-      <if test="complaintMerchant != null" >
-        complaint_merchant,
-      </if>
-      <if test="time != null" >
-        time,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="complaintClasses != null" >
-        complaint_classes,
-      </if>
-      <if test="photo != null" >
-        photo,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-      <if test="linkman != null" >
-        linkman,
-      </if>
-      <if test="contact != null" >
-        Contact,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="aid != null" >
-        #{aid,jdbcType=INTEGER},
-      </if>
-      <if test="complaintMerchant != null" >
-        #{complaintMerchant,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="complaintClasses != null" >
-        #{complaintClasses,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="linkman != null" >
-        #{linkman,jdbcType=VARCHAR},
-      </if>
-      <if test="contact != null" >
-        #{contact,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.Complaint" >
-    update complaint
-    <set >
-      <if test="aid != null" >
-        aid = #{aid,jdbcType=INTEGER},
-      </if>
-      <if test="complaintMerchant != null" >
-        complaint_merchant = #{complaintMerchant,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="complaintClasses != null" >
-        complaint_classes = #{complaintClasses,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        photo = #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="linkman != null" >
-        linkman = #{linkman,jdbcType=VARCHAR},
-      </if>
-      <if test="contact != null" >
-        Contact = #{contact,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.Complaint" >
+    <insert id="insertSelective" parameterType="com.sanqing.entity.Complaint">
+        insert into complaint
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="aid != null">
+                aid,
+            </if>
+            <if test="complaintMerchant != null">
+                complaint_merchant,
+            </if>
+            <if test="time != null">
+                time,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="complaintClasses != null">
+                complaint_classes,
+            </if>
+            <if test="photo != null">
+                photo,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="linkman != null">
+                linkman,
+            </if>
+            <if test="contact != null">
+                Contact,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="aid != null">
+                #{aid,jdbcType=INTEGER},
+            </if>
+            <if test="complaintMerchant != null">
+                #{complaintMerchant,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="complaintClasses != null">
+                #{complaintClasses,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null">
+                #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sanqing.entity.Complaint">
+        update complaint
+        <set>
+            <if test="aid != null">
+                aid = #{aid,jdbcType=INTEGER},
+            </if>
+            <if test="complaintMerchant != null">
+                complaint_merchant = #{complaintMerchant,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="complaintClasses != null">
+                complaint_classes = #{complaintClasses,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                photo = #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null">
+                linkman = #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                Contact = #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sanqing.entity.Complaint">
     update complaint
     set aid = #{aid,jdbcType=INTEGER},
       complaint_merchant = #{complaintMerchant,jdbcType=VARCHAR},
